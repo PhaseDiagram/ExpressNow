@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListPreference
+        android:key="home_page"
+        android:title="主页设置"
+        android:defaultValue="0"
+        android:entries="@array/pref_home_page_titles"
+        android:entryValues="@array/pref_home_page_values"
+        android:positiveButtonText="@null"
+        android:negativeButtonText="@null"/>
+    <Preference
+        android:title="清除搜索记录"
+        android:key="pref_clear_history_autoctv" />
+    <Preference
+        android:title="清除历史记录"
+        android:key="pref_clear_history_file" />
+    <Preference
+        android:title="关于"
+        android:key="pref_about" />
+
+</PreferenceScreen>

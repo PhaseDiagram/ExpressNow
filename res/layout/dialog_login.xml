@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="注册邮箱"
+        android:layout_margin="8dp"
+        android:id="@+id/dialog_login_email"
+        android:inputType="textEmailAddress"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="密码"
+        android:layout_margin="8dp"
+        android:id="@+id/dialog_login_pass"
+        android:inputType="textPassword"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:id="@+id/dialog_login_signup"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_gravity="center_horizontal"/>
+
+</LinearLayout>

@@ -1,0 +1,33 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16sp"
+    android:fitsSystemWindows="true">
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner"
+        android:padding="16dp" />
+
+    <pw.arcticwind.expressnow.model.AutoCompleteTextViewWithDel
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/num_input"
+        android:padding="16dp"
+        android:dropDownHeight="320dp"
+        android:inputType=""
+        android:hint="输入单号，空格会被自动过滤"
+        android:layout_below="@id/spinner" />
+
+
+    <Button
+        android:id="@+id/query_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/num_input"
+        android:layout_alignRight="@id/spinner"
+        android:text="查询"
+        android:textSize="24sp"/>
+
+</RelativeLayout>

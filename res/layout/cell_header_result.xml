@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/status_result_left"
+    android:text="物流状态：" />
+    <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/com_result_left"
+    android:layout_below="@id/status_result_left"
+    android:text="承运公司：" />
+    <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/num_result_left"
+    android:layout_below="@id/com_result_left"
+    android:text="运单编号："/>
+    <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/tel_result_left"
+    android:layout_below="@id/num_result_left"
+    android:text="官方电话："/>
+
+    <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/status_result_right"
+    android:layout_toRightOf="@id/status_result_left"/>
+    <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/com_result_right"
+    android:layout_toRightOf="@id/com_result_left"
+    android:layout_below="@id/status_result_right"/>
+    <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/num_result_right"
+    android:layout_toRightOf="@id/num_result_left"
+    android:layout_below="@id/com_result_right"/>
+    <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/tel_result_right"
+    android:layout_toRightOf="@id/tel_result_left"
+    android:layout_below="@id/num_result_right"/>
+
+    <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/trans_result_top"
+    android:layout_below="@id/tel_result_left"
+    android:text="物流跟踪："/>
+
+</RelativeLayout>

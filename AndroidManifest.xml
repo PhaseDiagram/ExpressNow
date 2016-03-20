@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="pw.arcticwind.expressnow">
+
+    <!--此处的多余权限主要是网络后台Bmob的sdk要求的, 实际没全用到-->
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/logo"
+        android:label="快递通"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".activity.startup.StartupActivity"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.startup.FirstVisitActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.ResultActivity"
+            android:screenOrientation="portrait"
+            android:label="快递详情"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.DrawerActivity"
+            android:screenOrientation="portrait"
+            android:label="快递通"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.PrefActivity"
+            android:screenOrientation="portrait"
+            android:label="设置" />
+        <activity
+            android:name=".activity.AboutActivity"
+            android:screenOrientation="portrait"
+            android:label="关于"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.forum.ForumActivity"
+            android:screenOrientation="portrait"
+            android:label="社区"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.forum.PostTopicActivity"
+            android:screenOrientation="portrait"
+            android:label="发表主题"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.forum.PostBodyActivity"
+            android:screenOrientation="portrait"
+            android:label="发表回复"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.forum.ForumDetailActivity"
+            android:screenOrientation="portrait"
+            android:label="帖子详情"
+            android:theme="@style/AppTheme.NoActionBar"/>
+    </application>
+
+</manifest>
