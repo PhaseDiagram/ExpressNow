@@ -21,6 +21,16 @@ public class ExpressStepAdapter extends RecyclerView.Adapter<ExpressStepAdapter.
     public static final int HEADER = 1;
     public static final int NORMAL = 2;
 
+    private OnItemClickListener onItemClickListener;
+
+    public interface OnItemClickListener {
+        void onItemClick(int position, FavorCell favorCell);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView timeView;
         public TextView contextView;

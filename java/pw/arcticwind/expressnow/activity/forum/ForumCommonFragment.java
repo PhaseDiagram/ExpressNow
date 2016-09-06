@@ -3,7 +3,6 @@ package pw.arcticwind.expressnow.activity.forum;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -17,14 +16,13 @@ import android.widget.Toast;
 import org.json.JSONArray;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.listener.FindCallback;
 import pw.arcticwind.expressnow.R;
-import pw.arcticwind.expressnow.model.DividerItemDecoration;
+import pw.arcticwind.expressnow.widget.DividerItemDecoration;
 import pw.arcticwind.expressnow.model.bmob.Topic;
 import pw.arcticwind.expressnow.model.bmob.TopicAdapter;
 import pw.arcticwind.expressnow.utils.ParseJSON;

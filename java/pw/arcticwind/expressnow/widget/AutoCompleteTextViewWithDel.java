@@ -1,4 +1,4 @@
-package pw.arcticwind.expressnow.model;
+package pw.arcticwind.expressnow.widget;
 
 import android.content.Context;
 import android.content.SharedPreferences;

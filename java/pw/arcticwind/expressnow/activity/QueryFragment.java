@@ -12,9 +12,13 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import pw.arcticwind.expressnow.R;
-import pw.arcticwind.expressnow.model.AutoCompleteTextViewWithDel;
+import pw.arcticwind.expressnow.widget.AutoCompleteTextViewWithDel;
 import pw.arcticwind.expressnow.utils.NetUtils;
+import pw.arcticwind.expressnow.widget.ScrollingTextView;
 
 //查询页
 //Drawer 的一部分
@@ -25,6 +29,8 @@ public class QueryFragment extends Fragment implements View.OnClickListener{
     private ArrayAdapter<String> spinnerAdapter;
     private AutoCompleteTextViewWithDel autoCompleteTextViewWithDel;
 
+    private ScrollingTextView scrollingTextView;
+
     private static final String AUTO_FIELD_MAIL_NO = "mail_no";
 
     @Nullable
@@ -34,6 +40,7 @@ public class QueryFragment extends Fragment implements View.OnClickListener{
             view = inflater.inflate(R.layout.fragment_query, container, false);
 
         initView(view);
+        initScrollingText();
         return view;
     }
 
@@ -56,6 +63,17 @@ public class QueryFragment extends Fragment implements View.OnClickListener{
 
         querySubmit = (Button) view.findViewById(R.id.query_submit);
         querySubmit.setOnClickListener(this);
+
+        scrollingTextView = (ScrollingTextView) view.findViewById(R.id.scroll_head);
+    }
+
+    private void initScrollingText() {
+        List<String> list = new ArrayList<>();
+        list.add("\n顺丰对快件的保护最好，可以用来寄送电子物品");
+        list.add("\nEMS可以寄到偏远地区");
+        list.add("\n各快递一般有自己的服务电话");
+        list.add("\n快递不是淘宝商家");
+        scrollingTextView.setData(list);
     }
 
     @Override
@@ -104,4 +122,8 @@ public class QueryFragment extends Fragment implements View.OnClickListener{
         }
 
     }
+
+
+
+
 }

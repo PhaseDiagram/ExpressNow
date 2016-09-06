@@ -1,6 +1,12 @@
 package pw.arcticwind.expressnow.activity;
 
 import android.app.ProgressDialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.drawable.PaintDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -13,6 +19,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,17 +38,19 @@ import java.io.PrintStream;
 import java.lang.ref.WeakReference;
 
 import pw.arcticwind.expressnow.R;
-import pw.arcticwind.expressnow.model.DividerItemDecoration;
+import pw.arcticwind.expressnow.model.FavorCell;
+import pw.arcticwind.expressnow.widget.DividerItemDecoration;
 import pw.arcticwind.expressnow.model.ExpressInfo;
 import pw.arcticwind.expressnow.model.ExpressStepAdapter;
 import pw.arcticwind.expressnow.utils.HttpUtils;
 import pw.arcticwind.expressnow.utils.ParseJSON;
 
 //查询详情页
-//带 header 的 RecyclerView; 使用 Handler 进行线程间通信; SwipeRefreshLayout; 对已查询过的结果进行缓存, 并在新查询回应前显示缓存
+//带 header 和点击事件的 RecyclerView; 使用 Handler 进行线程间通信; SwipeRefreshLayout; 对已查询过的结果进行缓存, 并在新查询回应前显示缓存
 public class ResultActivity extends AppCompatActivity implements View.OnClickListener, HttpUtils.HttpCallbackListener, SwipeRefreshLayout.OnRefreshListener {
     private ProgressDialog progressDialog;
     private RecyclerView recyclerView;
+    private View headerView;
     private RecyclerView.LayoutManager layoutManager;
     private ExpressStepAdapter adapter;
     private Toolbar toolbar;
@@ -51,7 +62,6 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
     private boolean favorite = false;
 
     //这里不用 0, 因为 int 的默认值就是 0, 不注意时会引起混乱
-    //虽然手动赋 -1, 或者使用中注意点可以避免, 不过还是这样省事
     private static final int FILE_CREATE_FAIL = 1;
     private static final int FILE_IO_EXCEPTION = 2;
     private static final int FILE_NOT_FOUND = 3;
@@ -65,6 +75,7 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
     private String num;
 
     private SwipeRefreshLayout swipeRefreshLayout;
+    private PopupWindow popupWindow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,9 +107,16 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
 
-        View headerView = LayoutInflater.from(this).inflate(R.layout.cell_header_result, recyclerView, false);
+        headerView = LayoutInflater.from(this).inflate(R.layout.cell_header_result, recyclerView, false);
         adapter = new ExpressStepAdapter();
         adapter.setHeaderView(headerView);
+
+        headerView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popUp();
+            }
+        });
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
         if (favorite) {
@@ -116,6 +134,19 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
                 } else {
                     saveToFavor(jsonObject, expressCom, num);
                 }
+                break;
+            case R.id.pop_call:
+                popupWindow.dismiss();
+                TextView telView = (TextView) headerView.findViewById(R.id.tel_result_right);
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + telView.getText().toString()));
+                startActivity(intent);
+                break;
+            case R.id.pop_copy_num:
+                ClipboardManager clipboardManager= (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clipData = ClipData.newPlainText("num", num);
+                clipboardManager.setPrimaryClip(clipData);
+                Toast.makeText(this, "已复制", Toast.LENGTH_SHORT).show();
+                popupWindow.dismiss();
                 break;
             default:
                 break;
@@ -164,6 +195,7 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
             }
         }
     };
+
     private static class ToastHandler extends Handler {
         private final WeakReference<ResultActivity> activityWeakReference;
 
@@ -333,5 +365,25 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void popUp() {
+        View view = getLayoutInflater().inflate(R.layout.pop_result, null);
+        popupWindow = new PopupWindow(view, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        popupWindow.setBackgroundDrawable(new PaintDrawable());
+        popupWindow.setOutsideTouchable(true);
+        Button copyNum = (Button) view.findViewById(R.id.pop_copy_num);
+        Button call = (Button) view.findViewById(R.id.pop_call);
+        copyNum.setOnClickListener(this);
+        call.setOnClickListener(this);
+        if (!popupWindow.isShowing()) {
+            headerView.post(new Runnable() {
+                @Override
+                public void run() {
+                    popupWindow.showAsDropDown(headerView);
+
+                }
+            });
+        }
     }
 }

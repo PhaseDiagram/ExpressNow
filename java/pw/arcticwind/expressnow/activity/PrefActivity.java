@@ -16,7 +16,7 @@ import android.widget.Toast;
 import java.io.File;
 
 import pw.arcticwind.expressnow.R;
-import pw.arcticwind.expressnow.model.AutoCompleteTextViewWithDel;
+import pw.arcticwind.expressnow.widget.AutoCompleteTextViewWithDel;
 
 //设置页
 //设置项: 主页设置, 清除搜索记录, 清除历史记录, 关于

@@ -10,7 +10,7 @@
         android:id="@+id/spinner"
         android:padding="16dp" />
 
-    <pw.arcticwind.expressnow.model.AutoCompleteTextViewWithDel
+    <pw.arcticwind.expressnow.widget.AutoCompleteTextViewWithDel
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/num_input"
@@ -29,5 +29,22 @@
         android:layout_alignRight="@id/spinner"
         android:text="查询"
         android:textSize="24sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="tips"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/scrolling_tips"
+        android:textSize="24sp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="16dp"/>
+    <pw.arcticwind.expressnow.widget.ScrollingTextView
+        android:id="@+id/scroll_head"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@id/scrolling_tips"></pw.arcticwind.expressnow.widget.ScrollingTextView>
 
 </RelativeLayout>

@@ -3,7 +3,6 @@ package pw.arcticwind.expressnow.activity.forum;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,10 +20,9 @@ import java.util.List;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.listener.FindCallback;
 import pw.arcticwind.expressnow.R;
-import pw.arcticwind.expressnow.model.DividerItemDecoration;
+import pw.arcticwind.expressnow.widget.DividerItemDecoration;
 import pw.arcticwind.expressnow.model.bmob.Post;
 import pw.arcticwind.expressnow.model.bmob.PostAdapter;
-import pw.arcticwind.expressnow.model.bmob.Topic;
 import pw.arcticwind.expressnow.utils.ParseJSON;
 
 //社区, 帖子详情页
